@@ -1,0 +1,51 @@
+﻿@model PaymentInfoModel
+
+@{
+    Layout = "";
+}
+
+<script asp-location="Footer">
+    $(document).ready(function () {
+        $('.payment-info-next-step-button').hide();
+    });
+</script>
+
+@if (Model == null)
+{
+    <table width="100%" cellpadding="0" cellspacing="0">
+        <tr>
+            <td>
+                <p>@T("Plugins.Payments.Osu.PaymentInfoIsNotConfigured")</p>
+            </td>
+        </tr>
+    </table>
+}
+else
+{
+    <script asp-location="Footer">
+        $(document).ready(function () {
+            $(window).on('message', function (e) {
+                console.log(e.originalEvent.data);
+            });
+
+            payosu.pay({
+                buyerFirstName: '@Model.BuyerFirstName',
+                buyerLastName: '@Model.BuyerLastName',
+                buyerEmail: '@Model.BuyerEmail',
+                buyerPostCode: '@Model.BuyerPostCode',
+                buyerAddress: '@Model.BuyerAddress',
+                paymentCurrency: '@Model.PaymentCurrency',
+                apiKey: '@Model.ApiKey',
+                successURL: '@Model.SuccessUrl',
+                failureURL: '@Model.FailureUrl',
+                paymentAmount: @Model.PaymentAmount,
+                paymentReference: '@Model.PaymentReference',
+            });
+        });
+    </script>
+}
+
+@if (orderSettings.OnePageCheckoutEnabled)
+{
+    @Html.NopInlineScripts(ResourceLocation.Footer)
+}

@@ -1,0 +1,11 @@
+﻿{
+  "Group": "Payment methods",
+  "FriendlyName": "Osu",
+  "SystemName": "Payments.Osu",
+  "Version": "1.0",
+  "SupportedVersions": [ "4.30" ],
+  "Author": "nopCommerce team",
+  "DisplayOrder": 1,
+  "FileName": "Nop.Plugin.Payments.Osu.dll",
+  "Description": "This plugin allows paying with Osu"
+}
